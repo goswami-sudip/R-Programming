@@ -1,7 +1,7 @@
 ## The following two functions makeCacheMatrix and cacheSolve together 
-##creates a special matrix,store it in the cache
-##and then calculates the inverse matrix and store 
-##the inverse matrix in the cache and returns the inverse matrix 
+##create a special matrix, store it in the cache
+##and then calculate the inverse matrix and store 
+##the inverse matrix in the cache and return the inverse matrix 
 
 ##makeCacheMatrix is a function which returns a list of functions
 ##The functions returned are 
@@ -17,10 +17,10 @@ makeCacheMatrix <- function(x = matrix()) {
 inv <- NULL				##initially nothing in the cache so inv(inverse of the matrix)is set to null
 	setMatrix<-function(y) {	
 		x<<-y				##set the value of the matrix to y and store it
-		inv<<-NULL			##for a new matrix inv is set to NULL 	
+		inv<<-NULL			##for a new matrix inv is set to NULL (removing the previous inverse matrix) 	
 	}
 	getMatrix <- function() x	##returns the stored matrix 
-	setInverse <-function(solve) inv<<-solve ##cache the inverse of the stored matrix
+	setInverse <-function(solve) inv<<-solve ##caches the inverse of the stored matrix
 	getInverse <-function() inv		     ##returns the cached Inverse
 	#the following command returns a list where each element in the list is a function
 	list(seMatrix = setMatrix, getMatrix = getMatrix, setInverse = setInverse,
@@ -42,6 +42,6 @@ cacheSolve <- function(x, ...) {
  		}      				
 data <- x$getMatrix()			##else, it calculates the inverse of the input matrix
 inv<-solve(data, ...)			
-x$setInverse(inv)				##stores it in the cach
+x$setInverse(inv)				##stores it in the cache
 inv						
 }
